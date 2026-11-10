@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A classroom resource sharing portal for students and faculty.">
+    <title>CampusShare | Classroom Resource Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="#home">
+            <span class="brand-icon">CS</span>
+            <span>Campus<span class="brand-blue">Share</span>
+                <small>CLASSROOM RESOURCE HUB</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#resources">Resources</a>
+            <a href="#share">Share Resource</a>
+            <button id="bookmarksNav" class="nav-button" type="button">
+                ♡ Bookmarks <span id="bookmarkCount">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">YOUR CAMPUS, ONE LIBRARY</p>
+                <h1>Good resources.<br><span>Shared learning.</span></h1>
+                <p class="hero-description">
+                    Find class notes, presentations, study guides and useful
+                    links shared by students and faculty.
+                </p>
+                <a class="button primary" href="#resources">
+                    Explore resources <span>→</span>
+                </a>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="orb orb-one"></div>
+                <div class="orb orb-two"></div>
+                <div class="visual-card">
+                    <span class="pdf-icon">PDF</span>
+                    <div>
+                        <strong>Study resources</strong>
+                        <small>All in one place</small>
+                    </div>
+                    <span class="check-icon">✓</span>
+                </div>
+                <div class="visual-note">
+                    <span>✦</span>
+                    <div>
+                        <strong>Learn together</strong>
+                        <small>Share knowledge</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats" aria-label="Portal statistics">
+            <div class="stat">
+                <span class="stat-symbol blue-symbol">▤</span>
+                <div>
+                    <strong id="totalResources">0</strong>
+                    <small>Resources</small>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-symbol purple-symbol">▦</span>
+                <div>
+                    <strong id="totalSubjects">0</strong>
+                    <small>Subjects</small>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-symbol green-symbol">♡</span>
+                <div>
+                    <strong id="totalBookmarks">0</strong>
+                    <small>Bookmarked by you</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">THE RESOURCE LIBRARY</p>
+                    <h2>Find what you need</h2>
+                    <p class="muted">
+                        Search, filter and save useful learning materials.
+                    </p>
+                </div>
+                <a class="button outline" href="#share">＋ Share resource</a>
+            </div>
+
+            <div class="filter-panel">
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input id="searchInput" type="search"
+                        placeholder="Search notes, topics, subjects..."
+                        autocomplete="off">
+                </label>
+
+                <div class="filter-row">
+                    <label>Subject
+                        <select id="subjectFilter">
+                            <option value="all">All subjects</option>
+                        </select>
+                    </label>
+
+                    <label>Resource type
+                        <select id="typeFilter">
+                            <option value="all">All types</option>
+                            <option value="Notes">Notes</option>
+                            <option value="Presentation">Presentation</option>
+                            <option value="Study Guide">Study Guide</option>
+                            <option value="Useful Link">Useful Link</option>
+                            <option value="Template">Template</option>
+                        </select>
+                    </label>
+
+                    <label>Sort by
+                        <select id="sortFilter">
+                            <option value="newest">Recently added</option>
+                            <option value="title">Title A–Z</option>
+                            <option value="rating">Highest rated</option>
+                        </select>
+                    </label>
+
+                    <button id="clearFilters" class="text-button" type="button">
+                        Clear filters
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-row">
+                <p id="resultsMessage">Showing resources</p>
+                <button id="bookmarksOnly" class="text-button" type="button">
+                    ♡ Show bookmarks only
+                </button>
+            </div>
+
+            <div id="resourceList" class="resource-grid" aria-live="polite"></div>
+
+            <div id="emptyState" class="empty-state hidden">
+                <span>⌕</span>
+                <h3>No resources found</h3>
+                <p>Try another keyword or clear your filters.</p>
+                <button id="emptyClear" class="button outline" type="button">
+                    Clear filters
+                </button>
+            </div>
+        </section>
+
+        <section id="share" class="section share-section">
+            <div class="share-intro">
+                <p class="eyebrow">CONTRIBUTE TO THE COMMUNITY</p>
+                <h2>Have something useful?</h2>
+                <p class="muted">
+                    Share a resource with your classmates. Add its details
+                    and a link to the learning material.
+                </p>
+
+                <div class="info-box">
+                    <strong>ⓘ Demo storage</strong>
+                    <p>
+                        Resources are saved in this browser only. This project
+                        does not upload files to a shared server.
+                    </p>
+                </div>
+            </div>
+
+            <form id="resourceForm" class="resource-form">
+                <div class="form-heading">
+                    <span class="form-plus">＋</span>
+                    <div>
+                        <h3>Share a resource</h3>
+                        <p>Fields marked * are required.</p>
+                    </div>
+                </div>
+
+                <label>Resource title *
+                    <input id="resourceTitle" type="text" maxlength="80"
+                        placeholder="e.g. Python Unit 1 Notes" required>
+                </label>
+
+                <div class="form-two">
+                    <label>Subject *
+                        <select id="resourceSubject" required>
+                            <option value="">Choose a subject</option>
+                            <option>Python Programming</option>
+                            <option>Mathematics</option>
+                            <option>Electronics</option>
+                            <option>Environmental Science</option>
+                            <option>Web Development</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+
+                    <label>Resource type *
+                        <select id="resourceType" required>
+                            <option value="">Choose type</option>
+                            <option>Notes</option>
+                            <option>Presentation</option>
+                            <option>Study Guide</option>
+                            <option>Useful Link</option>
+                            <option>Template</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label>Description *
+                    <textarea id="resourceDescription" rows="3" maxlength="240"
+                        placeholder="What will students learn from this resource?"
+                        required></textarea>
+                </label>
+
+                <label>Resource link *
+                    <input id="resourceUrl" type="url"
+                        placeholder="https://example.com/resource" required>
+                    <small>
+                        Enter a public link to a document, PDF or learning website.
+                    </small>
+                </label>
+
+                <label>Shared by
+                    <input id="resourceAuthor" type="text" maxlength="40"
+                        placeholder="e.g. Student or Faculty">
+                </label>
+
+                <button class="button primary submit-button" type="submit">
+                    Add to resource library <span>→</span>
+                </button>
+                <p id="formMessage" class="form-message" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a class="brand footer-brand" href="#home">
+            <span class="brand-icon">CS</span>
+            <span>Campus<span class="brand-blue">Share</span>
+                <small>CLASSROOM RESOURCE HUB</small>
+            </span>
+        </a>
+        <p>CSC 326 Project · Built for collaborative learning</p>
+        <a class="back-top" href="#home">Back to top ↑</a>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
